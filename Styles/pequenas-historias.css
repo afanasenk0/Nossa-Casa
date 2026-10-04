@@ -1,0 +1,403 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+}
+
+#pagina {
+    width: 100vw;
+    height: 100vh;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ======================================================
+   INTRODUÇÃO
+   ====================================================== */
+
+#introducao {
+    position: absolute;
+
+    width: 90%;
+    max-width: 800px;
+
+    text-align: center;
+
+    z-index: 10;
+}
+
+#frase {
+    font-family: Georgia, serif;
+
+    font-size: 1.4rem;
+    line-height: 1.8;
+
+    letter-spacing: 0.04em;
+
+    opacity: 0;
+
+    transform: translateY(8px);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+}
+
+#frase.visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#frase.saindo {
+    opacity: 0;
+    transform: translateY(-8px);
+}
+
+
+/* ======================================================
+   ÁREA DAS HISTÓRIAS
+   ====================================================== */
+
+#historias {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+
+    transition:
+        opacity 2s ease;
+}
+
+#historias.visivel {
+    opacity: 1;
+}
+
+
+/* ======================================================
+   CARROSSEL
+   ====================================================== */
+
+#carrossel {
+    width: min(850px, 75vw);
+    height: 70vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+
+/* ======================================================
+   HISTÓRIA
+   ====================================================== */
+
+#historia {
+    width: 100%;
+    max-width: 760px;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform: translateY(15px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+#historia.visivel {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+#numero-historia {
+    display: block;
+
+    font-family: Georgia, serif;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 0.25em;
+
+    color: rgba(255, 255, 255, 0.4);
+
+    margin-bottom: 28px;
+}
+
+
+#titulo-historia {
+    font-family: Georgia, serif;
+
+    font-size: 2rem;
+
+    font-weight: normal;
+
+    letter-spacing: 0.03em;
+
+    margin-bottom: 25px;
+}
+
+
+.separador {
+    width: 35px;
+    height: 1px;
+
+    margin: 0 auto 30px;
+
+    background: rgba(255, 255, 255, 0.4);
+}
+
+
+#texto-historia {
+    font-family: Georgia, serif;
+
+    font-size: 1.15rem;
+
+    line-height: 2;
+
+    letter-spacing: 0.02em;
+
+    color: rgba(255, 255, 255, 0.82);
+
+    max-width: 700px;
+
+    margin: 0 auto;
+}
+
+
+/* ======================================================
+   NAVEGAÇÃO
+   ====================================================== */
+
+.navegacao {
+    position: absolute;
+
+    top: 50%;
+
+    width: 60px;
+    height: 110px;
+
+    transform: translateY(-50%);
+
+    background: none;
+
+    border: none;
+
+    color: rgba(255, 255, 255, 0.35);
+
+    font-family: Georgia, serif;
+
+    font-size: 3.5rem;
+
+    font-weight: 300;
+
+    cursor: pointer;
+
+    z-index: 20;
+
+    transition:
+        color 0.4s ease,
+        transform 0.4s ease,
+        opacity 0.6s ease;
+}
+
+.navegacao:hover {
+    color: #fff;
+}
+
+#anterior {
+    left: 2vw;
+}
+
+#proximo {
+    right: 2vw;
+}
+
+#anterior:hover {
+    transform:
+        translate(-5px, -50%);
+}
+
+#proximo:hover {
+    transform:
+        translate(5px, -50%);
+}
+
+
+/* ======================================================
+   CONTADOR
+   ====================================================== */
+
+#contador {
+    position: absolute;
+
+    bottom: 55px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-family: Georgia, serif;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 0.2em;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    z-index: 20;
+
+    transition:
+        opacity 0.6s ease;
+}
+
+
+/* ======================================================
+   INDICADORES
+   ====================================================== */
+
+#indicadores {
+    position: absolute;
+
+    bottom: 28px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    gap: 7px;
+
+    z-index: 20;
+
+    transition:
+        opacity 0.6s ease;
+}
+
+.indicador {
+    width: 4px;
+    height: 4px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.25);
+
+    cursor: pointer;
+
+    transition:
+        background 0.4s ease,
+        transform 0.4s ease;
+}
+
+.indicador.ativo {
+    background: #fff;
+
+    transform: scale(1.6);
+}
+
+
+/* ======================================================
+   FINAL
+   ====================================================== */
+
+#final {
+    position: absolute;
+
+    width: 90%;
+    max-width: 800px;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+
+    z-index: 30;
+}
+
+#final.visivel {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+#frase-final {
+    font-family: Georgia, serif;
+
+    font-size: 1.45rem;
+
+    line-height: 1.9;
+
+    letter-spacing: 0.04em;
+}
+
+
+/* ======================================================
+   CELULAR
+   ====================================================== */
+
+@media (max-width: 700px) {
+
+    #carrossel {
+        width: 82vw;
+        height: 70vh;
+    }
+
+    #titulo-historia {
+        font-size: 1.6rem;
+    }
+
+    #texto-historia {
+        font-size: 1rem;
+
+        line-height: 1.85;
+    }
+
+    .navegacao {
+        font-size: 2.8rem;
+    }
+
+    #anterior {
+        left: -5px;
+    }
+
+    #proximo {
+        right: -5px;
+    }
+
+}   

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa Casa</title>
+
+    <link rel="stylesheet" href="Styles/nossa-casa.css">
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+
+<body>
+
+    <div id="interface">
+
+        <div id="titulo">
+            Nossa Casa
+        </div>
+
+        <div id="instrucoes">
+            Arraste para observar
+        </div>
+
+        <div id="transicao-pagina"></div>
+
+        <div id="memoria" aria-hidden="true">
+
+            <div id="memoria-conteudo">
+
+                <div id="memoria-titulo"></div>
+
+                <div id="memoria-descricao"></div>
+
+                <div id="memoria-fechar">
+                    clique fora para voltar
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="module" src="Scripts/nossa-casa.js"></script>
+
+</body>
+</html>

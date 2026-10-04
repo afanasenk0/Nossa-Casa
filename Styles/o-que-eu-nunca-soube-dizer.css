@@ -1,0 +1,298 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+
+body {
+    background: #000;
+    color: #fff;
+
+    overflow: hidden;
+}
+
+
+#pagina {
+    width: 100vw;
+    height: 100vh;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* INTRODUÇÃO */
+
+#introducao {
+    position: absolute;
+
+    width: 90%;
+    max-width: 800px;
+
+    text-align: center;
+
+    z-index: 5;
+}
+
+
+#frase {
+    font-family: Georgia, serif;
+
+    font-size: 1.4rem;
+    line-height: 1.7;
+
+    letter-spacing: 0.04em;
+
+    opacity: 0;
+
+    transform: translateY(8px);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+}
+
+
+#frase.visivel {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+#frase.saindo {
+    opacity: 0;
+
+    transform: translateY(-8px);
+}
+
+
+/* PENSAMENTOS */
+
+#pensamentos {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 4rem;
+
+    opacity: 0;
+
+    transition: opacity 2s ease;
+}
+
+
+#pensamentos.visivel {
+    opacity: 1;
+}
+
+
+.pensamento {
+    width: 45px;
+    height: 45px;
+
+    background: none;
+    border: none;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    font-family: Georgia, serif;
+
+    cursor: pointer;
+
+    position: relative;
+
+    transition:
+        color 0.4s ease,
+        transform 0.4s ease;
+}
+
+
+.pensamento:hover {
+    color: #fff;
+
+    transform: translateY(-4px);
+}
+
+
+.pensamento::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -8px;
+
+    width: 0;
+    height: 1px;
+
+    background: #fff;
+
+    transform: translateX(-50%);
+
+    transition: width 0.4s ease;
+}
+
+
+.pensamento:hover::after {
+    width: 20px;
+}
+
+
+.numero {
+    font-size: 0.85rem;
+
+    letter-spacing: 0.15em;
+}
+
+
+/* PENSAMENTO ABERTO */
+
+#pensamento-aberto {
+    position: absolute;
+
+    width: 90%;
+    max-width: 800px;
+
+    text-align: center;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transform: translateY(15px);
+
+    transition:
+        opacity 1.5s ease,
+        transform 1.5s ease;
+
+    z-index: 10;
+}
+
+
+#pensamento-aberto.visivel {
+    opacity: 1;
+
+    pointer-events: auto;
+
+    transform: translateY(0);
+}
+
+
+#fechar {
+    position: absolute;
+
+    top: -55px;
+    right: 0;
+
+    background: none;
+    border: none;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    font-family: Georgia, serif;
+
+    font-size: 1.5rem;
+
+    cursor: pointer;
+
+    transition: color 0.4s ease;
+}
+
+
+#fechar:hover {
+    color: #fff;
+}
+
+
+#pensamento-numero {
+    font-family: Georgia, serif;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 0.25em;
+
+    color: rgba(255, 255, 255, 0.4);
+
+    margin-bottom: 1.5rem;
+}
+
+
+#pensamento-titulo {
+    font-family: Georgia, serif;
+
+    font-size: 2.3rem;
+
+    font-weight: 400;
+
+    line-height: 1.4;
+
+    letter-spacing: 0.04em;
+
+    margin-bottom: 2rem;
+}
+
+
+#pensamento-texto {
+    font-family: Georgia, serif;
+
+    font-size: 1.2rem;
+
+    line-height: 1.9;
+
+    letter-spacing: 0.02em;
+
+    color: rgba(255, 255, 255, 0.82);
+}
+
+
+/* FINAL */
+
+#final {
+    position: absolute;
+
+    width: 90%;
+    max-width: 800px;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+
+    pointer-events: none;
+}
+
+
+#final.visivel {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+#frase-final {
+    font-family: Georgia, serif;
+
+    font-size: 1.5rem;
+
+    line-height: 1.8;
+
+    letter-spacing: 0.04em;
+}

@@ -1,0 +1,449 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+}
+
+#pagina {
+    width: 100vw;
+    height: 100vh;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ======================================================
+   INTRODUÇÃO
+   ====================================================== */
+
+#introducao {
+    position: absolute;
+
+    width: 90%;
+    max-width: 800px;
+
+    text-align: center;
+
+    z-index: 10;
+}
+
+#frase {
+    font-family: Georgia, serif;
+
+    font-size: 1.4rem;
+    line-height: 1.7;
+
+    letter-spacing: 0.04em;
+
+    opacity: 0;
+
+    transform: translateY(8px);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+}
+
+#frase.visivel {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+#frase.saindo {
+    opacity: 0;
+
+    transform: translateY(-8px);
+}
+
+
+/* ======================================================
+   CARROSSEL
+   ====================================================== */
+
+#album {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+
+    transition:
+        opacity 2s ease;
+}
+
+#album.visivel {
+    opacity: 1;
+}
+
+#carrossel {
+    position: relative;
+
+    width: min(1100px, 78vw);
+    height: 78vh;
+
+    overflow: hidden;
+}
+
+
+/* ======================================================
+   FOTOGRAFIAS
+   ====================================================== */
+
+#fotografias {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+}
+
+.fotografia {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 680px;
+    max-width: 70vw;
+    height: 68vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.8);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        transform 1s ease,
+        opacity 1s ease;
+
+    z-index: 1;
+}
+
+.fotografia.ativa {
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+
+    opacity: 1;
+
+    pointer-events: auto;
+
+    z-index: 3;
+}
+
+.fotografia.anterior {
+    transform:
+        translate(
+            calc(-50% - 430px),
+            -50%
+        )
+        scale(0.72);
+
+    opacity: 0.2;
+
+    z-index: 1;
+}
+
+.fotografia.proxima {
+    transform:
+        translate(
+            calc(-50% + 430px),
+            -50%
+        )
+        scale(0.72);
+
+    opacity: 0.2;
+
+    z-index: 1;
+}
+
+
+/* ======================================================
+   IMAGEM
+   ====================================================== */
+
+.fotografia img {
+    max-width: 100%;
+    max-height: 100%;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    display: block;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.75);
+
+    cursor: pointer;
+
+    user-select: none;
+}
+
+
+/* ======================================================
+   NAVEGAÇÃO
+   ====================================================== */
+
+.navegacao {
+    position: absolute;
+
+    top: 50%;
+
+    width: 60px;
+    height: 110px;
+
+    transform: translateY(-50%);
+
+    background: none;
+
+    border: none;
+
+    color: rgba(255, 255, 255, 0.35);
+
+    font-family: Georgia, serif;
+
+    font-size: 3.5rem;
+
+    font-weight: 300;
+
+    cursor: pointer;
+
+    z-index: 20;
+
+    transition:
+        color 0.4s ease,
+        transform 0.4s ease;
+}
+
+.navegacao:hover {
+    color: #fff;
+}
+
+#anterior {
+    left: 2vw;
+}
+
+#proximo {
+    right: 2vw;
+}
+
+#anterior:hover {
+    transform:
+        translate(-5px, -50%);
+}
+
+#proximo:hover {
+    transform:
+        translate(5px, -50%);
+}
+
+
+/* ======================================================
+   CONTADOR
+   ====================================================== */
+
+#contador {
+    position: absolute;
+
+    bottom: 55px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-family: Georgia, serif;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 0.2em;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    z-index: 20;
+}
+
+
+/* ======================================================
+   INDICADORES
+   ====================================================== */
+
+#indicadores {
+    position: absolute;
+
+    bottom: 28px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    gap: 7px;
+
+    z-index: 20;
+}
+
+.indicador {
+    width: 4px;
+    height: 4px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.25);
+
+    cursor: pointer;
+
+    transition:
+        background 0.4s ease,
+        transform 0.4s ease;
+}
+
+.indicador.ativo {
+    background: #fff;
+
+    transform: scale(1.6);
+}
+
+
+/* ======================================================
+   FINAL
+   ====================================================== */
+
+#final {
+    position: absolute;
+
+    width: 90%;
+    max-width: 800px;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+
+    z-index: 30;
+}
+
+#final.visivel {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+#frase-final {
+    font-family: Georgia, serif;
+
+    font-size: 1.45rem;
+
+    line-height: 1.9;
+
+    letter-spacing: 0.04em;
+}
+
+
+/* ======================================================
+   RESPONSIVIDADE
+   ====================================================== */
+
+@media (max-width: 900px) {
+
+    #carrossel {
+        width: 82vw;
+
+        height: 75vh;
+    }
+
+    .fotografia {
+        width: 100%;
+
+        max-width: 100%;
+
+        height: 65vh;
+    }
+
+    .fotografia.anterior {
+        transform:
+            translate(
+                calc(-50% - 300px),
+                -50%
+            )
+            scale(0.7);
+    }
+
+    .fotografia.proxima {
+        transform:
+            translate(
+                calc(-50% + 300px),
+                -50%
+            )
+            scale(0.7);
+    }
+
+    .navegacao {
+        font-size: 2.7rem;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    #carrossel {
+        width: 90vw;
+
+        height: 72vh;
+    }
+
+    .fotografia {
+        height: 62vh;
+    }
+
+    #anterior {
+        left: -4px;
+    }
+
+    #proximo {
+        right: -4px;
+    }
+
+    #indicadores {
+        gap: 6px;
+    }
+
+}

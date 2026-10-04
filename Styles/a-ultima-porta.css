@@ -1,0 +1,285 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000;
+    overflow: hidden;
+    font-family: Georgia, serif;
+    color: #f5f2ed;
+}
+
+.cena {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background: #000;
+}
+
+/* AMBIENTE */
+
+.ambiente {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1400px;
+    transition: transform 5s ease;
+}
+
+.parede {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(
+            ellipse at 50% 48%,
+            #24211e 0%,
+            #151311 45%,
+            #080807 100%
+        );
+}
+
+/* BATENTE */
+
+.batente {
+    position: relative;
+    width: min(38vw, 420px);
+    height: min(76vh, 680px);
+    min-width: 260px;
+    min-height: 420px;
+    background: #100e0c;
+    padding: 12px;
+    box-shadow:
+        0 0 40px rgba(0, 0, 0, 0.8),
+        0 0 100px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+/* PORTA */
+
+.porta {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    background:
+        linear-gradient(
+            90deg,
+            #30251d 0%,
+            #49372a 20%,
+            #38291f 55%,
+            #211812 100%
+        );
+    box-shadow:
+        inset 8px 0 18px rgba(0, 0, 0, 0.35),
+        inset -8px 0 18px rgba(0, 0, 0, 0.3);
+    transition: transform 5s cubic-bezier(0.65, 0, 0.25, 1);
+}
+
+/* TEXTURA E PAINÉIS */
+
+.porta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent 0px,
+            rgba(0, 0, 0, 0.06) 2px,
+            transparent 5px,
+            rgba(255, 255, 255, 0.025) 9px
+        );
+    opacity: 0.8;
+}
+
+.painel {
+    position: absolute;
+    left: 13%;
+    width: 74%;
+    border: 2px solid rgba(12, 8, 5, 0.45);
+    box-shadow:
+        inset 0 0 20px rgba(0, 0, 0, 0.35),
+        0 0 2px rgba(255, 255, 255, 0.08);
+}
+
+.painel-superior {
+    top: 8%;
+    height: 42%;
+}
+
+.painel-inferior {
+    bottom: 8%;
+    height: 32%;
+}
+
+/* MAÇANETA */
+
+.macaneta {
+    position: absolute;
+    top: 50%;
+    right: 9%;
+    width: 38px;
+    height: 38px;
+    transform: translateY(-50%);
+}
+
+.base-macaneta {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 10px;
+    left: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #bca77d, #5c4729 70%);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.haste-macaneta {
+    position: absolute;
+    top: 15px;
+    left: 12px;
+    width: 27px;
+    height: 7px;
+    border-radius: 5px;
+    background: linear-gradient(180deg, #c7b58c, #6d5430);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    transform-origin: left center;
+    transition: transform 0.6s ease;
+}
+
+/* LUZ ATRÁS DA PORTA */
+
+.luz-interior {
+    position: absolute;
+    z-index: 1;
+    width: min(35vw, 400px);
+    height: min(70vh, 620px);
+    background: #d5c4a0;
+    opacity: 0;
+    filter: blur(70px);
+    transition: opacity 4s ease;
+}
+
+/* VINHETA */
+
+.vinheta {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 30%,
+        rgba(0, 0, 0, 0.55) 100%
+    );
+}
+
+/* DIÁLOGO */
+
+.dialogo {
+    position: absolute;
+    z-index: 12;
+    bottom: 12%;
+    left: 0;
+    width: 100%;
+    padding: 0 24px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 2s ease;
+}
+
+.dialogo p {
+    font-size: clamp(18px, 2.5vw, 25px);
+    letter-spacing: 0.4px;
+    line-height: 1.6;
+    text-shadow: 0 2px 12px #000;
+}
+
+/* ESCURECIMENTO */
+
+.tela-preta {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    background: #000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 3s ease;
+}
+
+/* FRASE FINAL */
+
+.final {
+    position: absolute;
+    inset: 0;
+    z-index: 11;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 3s ease;
+    background: #000;
+}
+
+.final h1 {
+    font-size: clamp(32px, 5vw, 54px);
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #f5f2ed;
+    text-align: center;
+}
+
+/* ESTADOS DA ANIMAÇÃO */
+
+.cena.aproximando .ambiente {
+    transform: scale(1.08);
+}
+
+.cena.abrindo .porta {
+    transform: rotateY(-105deg);
+}
+
+.cena.abrindo .luz-interior {
+    opacity: 0.75;
+}
+
+.cena.macaneta-ativa .haste-macaneta {
+    transform: rotate(-25deg);
+}
+
+.dialogo.visivel {
+    opacity: 1;
+}
+
+.tela-preta.ativa {
+    opacity: 1;
+}
+
+.final.visivel {
+    opacity: 1;
+}
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+    .batente {
+        width: 72vw;
+        height: 68vh;
+        min-width: 0;
+        min-height: 0;
+    }
+
+    .dialogo {
+        bottom: 14%;
+    }
+}

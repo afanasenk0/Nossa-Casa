@@ -1,0 +1,480 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+}
+
+#pagina {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ======================================================
+   INTRODUÇÃO
+   ====================================================== */
+
+#introducao {
+    position: absolute;
+
+    width: 90%;
+    max-width: 800px;
+
+    text-align: center;
+
+    z-index: 10;
+}
+
+#frase {
+    font-family: Georgia, serif;
+
+    font-size: 1.4rem;
+    line-height: 1.7;
+
+    letter-spacing: 0.04em;
+
+    opacity: 0;
+
+    transform: translateY(8px);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+}
+
+#frase.visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#frase.saindo {
+    opacity: 0;
+    transform: translateY(-8px);
+}
+
+
+/* ======================================================
+   CARROSSEL
+   ====================================================== */
+
+#trilha {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+
+    transition:
+        opacity 2s ease;
+}
+
+#trilha.visivel {
+    opacity: 1;
+}
+
+#carrossel {
+    position: relative;
+
+    width: min(900px, 75vw);
+    height: 620px;
+
+    overflow: hidden;
+}
+
+
+/* ======================================================
+   FAIXAS
+   ====================================================== */
+
+#faixas {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+}
+
+.faixa {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 600px;
+    max-width: 75vw;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.82);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    text-align: center;
+
+    transition:
+        transform 1s ease,
+        opacity 1s ease;
+}
+
+.faixa.ativa {
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+
+    opacity: 1;
+
+    pointer-events: auto;
+
+    z-index: 3;
+}
+
+.faixa.anterior {
+    transform:
+        translate(
+            calc(-50% - 420px),
+            -50%
+        )
+        scale(0.72);
+
+    opacity: 0.18;
+
+    z-index: 1;
+}
+
+.faixa.proxima {
+    transform:
+        translate(
+            calc(-50% + 420px),
+            -50%
+        )
+        scale(0.72);
+
+    opacity: 0.18;
+
+    z-index: 1;
+}
+
+
+/* ======================================================
+   PLAYER
+   ====================================================== */
+
+.player {
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    background: #050505;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 20px 70px rgba(0, 0, 0, 0.7);
+
+    overflow: hidden;
+}
+
+.player iframe {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+
+    display: block;
+}
+
+
+/* ======================================================
+   INFORMAÇÕES DA MÚSICA
+   ====================================================== */
+
+.informacoes {
+    margin-top: 2rem;
+
+    padding: 0 1rem;
+}
+
+.titulo {
+    font-family: Georgia, serif;
+
+    font-size: 1.8rem;
+    font-weight: 400;
+
+    letter-spacing: 0.04em;
+
+    margin-bottom: 0.55rem;
+}
+
+.artista {
+    font-family: Georgia, serif;
+
+    font-size: 0.85rem;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    letter-spacing: 0.12em;
+
+    margin-bottom: 1.4rem;
+}
+
+.legenda {
+    font-family: Georgia, serif;
+
+    font-size: 1.05rem;
+
+    line-height: 1.7;
+
+    color: rgba(255, 255, 255, 0.75);
+}
+
+
+/* ======================================================
+   NAVEGAÇÃO
+   ====================================================== */
+
+.navegacao {
+    position: absolute;
+
+    top: 50%;
+
+    width: 55px;
+    height: 100px;
+
+    transform: translateY(-50%);
+
+    background: none;
+
+    border: none;
+
+    color: rgba(255, 255, 255, 0.35);
+
+    font-family: Georgia, serif;
+
+    font-size: 3rem;
+
+    font-weight: 300;
+
+    cursor: pointer;
+
+    z-index: 20;
+
+    transition:
+        color 0.4s ease,
+        transform 0.4s ease;
+}
+
+.navegacao:hover {
+    color: #fff;
+}
+
+#anterior {
+    left: 2vw;
+}
+
+#proximo {
+    right: 2vw;
+}
+
+#anterior:hover {
+    transform:
+        translate(-5px, -50%);
+}
+
+#proximo:hover {
+    transform:
+        translate(5px, -50%);
+}
+
+
+/* ======================================================
+   INDICADORES
+   ====================================================== */
+
+#indicadores {
+    position: absolute;
+
+    bottom: 35px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    gap: 9px;
+
+    z-index: 20;
+}
+
+.indicador {
+    width: 5px;
+    height: 5px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.25);
+
+    cursor: pointer;
+
+    transition:
+        background 0.4s ease,
+        transform 0.4s ease;
+}
+
+.indicador.ativo {
+    background: #fff;
+
+    transform: scale(1.5);
+}
+
+
+/* ======================================================
+   FINAL
+   ====================================================== */
+
+#final {
+    position: absolute;
+
+    width: 90%;
+    max-width: 800px;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+
+    z-index: 30;
+}
+
+#final.visivel {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+#frase-final {
+    font-family: Georgia, serif;
+
+    font-size: 1.45rem;
+
+    line-height: 1.8;
+
+    letter-spacing: 0.04em;
+}
+
+
+/* ======================================================
+   RESPONSIVIDADE
+   ====================================================== */
+
+@media (max-width: 900px) {
+
+    #carrossel {
+        width: 80vw;
+        height: 550px;
+    }
+
+    .faixa {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .faixa.anterior {
+        transform:
+            translate(
+                calc(-50% - 300px),
+                -50%
+            )
+            scale(0.7);
+    }
+
+    .faixa.proxima {
+        transform:
+            translate(
+                calc(-50% + 300px),
+                -50%
+            )
+            scale(0.7);
+    }
+
+    .navegacao {
+        font-size: 2.5rem;
+    }
+
+    #anterior {
+        left: 0;
+    }
+
+    #proximo {
+        right: 0;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    #carrossel {
+        width: 88vw;
+        height: 520px;
+    }
+
+    .player {
+        width: 100%;
+    }
+
+    .titulo {
+        font-size: 1.45rem;
+    }
+
+    .legenda {
+        font-size: 0.95rem;
+    }
+
+    .navegacao {
+        width: 35px;
+        font-size: 2rem;
+    }
+
+    #anterior {
+        left: -2px;
+    }
+
+    #proximo {
+        right: -2px;
+    }
+
+    #indicadores {
+        bottom: 20px;
+    }
+}

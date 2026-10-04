@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+
+body {
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+}
+
+
+#primeiro-passo {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#introducao {
+    position: absolute;
+
+    width: 90%;
+    max-width: 800px;
+
+    text-align: center;
+}
+
+
+#frase {
+    font-family: Georgia, serif;
+
+    font-size: 1.4rem;
+    line-height: 1.7;
+    letter-spacing: 0.04em;
+
+    opacity: 0;
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+
+    transform: translateY(8px);
+}
+
+
+#frase.visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+#frase.saindo {
+    opacity: 0;
+    transform: translateY(-8px);
+}
+
+
+#datas {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1.5rem;
+
+    opacity: 0;
+
+    transition: opacity 2s ease;
+}
+
+
+#datas.visivel {
+    opacity: 1;
+}
+
+
+#datas button {
+    background: none;
+    border: none;
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-family: Georgia, serif;
+    font-size: 1.2rem;
+
+    letter-spacing: 0.15em;
+
+    cursor: pointer;
+
+    transition:
+        color 0.4s ease,
+        letter-spacing 0.4s ease,
+        transform 0.4s ease;
+}
+
+
+#datas button:hover {
+    color: #fff;
+
+    letter-spacing: 0.25em;
+
+    transform: translateY(-2px);
+}
+
+
+#revelacao {
+    position: absolute;
+
+    width: 90%;
+    max-width: 800px;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+}
+
+
+#revelacao.visivel {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+#data {
+    font-family: Georgia, serif;
+
+    font-size: 3.5rem;
+
+    letter-spacing: 0.15em;
+
+    margin-bottom: 2rem;
+}
+
+
+#texto {
+    font-family: Georgia, serif;
+
+    font-size: 1.3rem;
+
+    line-height: 1.8;
+
+    letter-spacing: 0.03em;
+
+    color: rgba(255, 255, 255, 0.85);
+}
